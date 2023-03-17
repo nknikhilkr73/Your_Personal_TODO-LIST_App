@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+<div class="todo-image">
+  <img class="todo-img" src="images/bg-desktop-light.jpg" alt="" />
+</div>
+<div class="jumbotron text-center">
+  <div class="container todo-container">
+    <div class="title-area">
+      <h1>TODO</h1>
+      <img src="images\icon-sun.svg" alt="" />
+    </div>
+    <form class="todo-form" action="/submitTo" method="POST">
+      <input
+        class="todo-input"
+        type="text"
+        placeholder="Message"
+        name="listItem"
+        autocomplete="off"
+      />
+      
+      <button class="btn btn-dark btn-lg enter todo-add">+</button>
+    </form>
+    <div class="todo-message">
+        <% for(let i=0; i<List.length; i++){ %>
+            <form action="/delete" method="post">
+            <div>
+            <input type="checkbox" name="checkbox" value="<%= List[i] %>" onchange="this.form.submit()" oninput=""this.value = capitalize(this.value)">
+            <p class="todo-text" style="margin: 1rem 0"><%= List[i] %>  </p>
+        </div>
+    </form>
+          <% } %>
+          
+    </div>
+
+    <hr />
+    
+    <a class="btn btn-light btn-lg logout" href="/logout" role="button"
+      >Log Out</a
+    >
+    
+  </div>
+</div>
+
+<script>
+  // Wait for the page to finish rendering
+  window.addEventListener("load", function () {
+    // Select the secret-message element
+    var secretMessage = document.querySelector(".todo-message");
+
+    // Scroll the element to the bottom
+    secretMessage.scrollTop = secretMessage.scrollHeight;
+
+  });
+  
+ 
+</script>
+
+<script>
+  function capitalize(str) {
+    return str.toLowerCase().replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+  }
+  </script>
+
+<%- include('partials/footer') %>
