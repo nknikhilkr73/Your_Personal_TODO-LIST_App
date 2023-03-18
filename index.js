@@ -150,7 +150,7 @@ app.get("/logout", function (req, res) {
 });
 
 app.post("/submitIt", function (req, res) {
-  if (!req.isAuthenticated()) {
+  if (req.isAuthenticated() === false) {
     return res.redirect("/login");
   }
   const submittedSecret = req.body.message;
