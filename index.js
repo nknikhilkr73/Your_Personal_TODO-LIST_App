@@ -1,4 +1,3 @@
-//jshint esversion:6
 require("dotenv").config();
 const express = require("express");
 const ejs = require("ejs");
@@ -229,24 +228,6 @@ app.post("/delete", function (req, res) {
     });
   }
 });
-
-// app.post("/delete", function (req, res) {
-//   if (!req.isAuthenticated()) {
-//     return res.redirect("/login");
-//   } else {
-//     const checkedItem = req.body.checkbox;
-//     User.findById(req.user.id, function (err, user) {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         if (user) {
-//           const index = user.list.indexOf(checkedItem);
-
-//         }
-//       }
-//     });
-//   }
-// });
 
 app.post("/register", function (req, res) {
   User.register(
