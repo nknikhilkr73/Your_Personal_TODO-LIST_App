@@ -72,7 +72,7 @@ passport.use(
       clientSecret: process.env.CLIENT_SECRET,
       // callbackURL: "http://localhost:4000/auth/google/secrets",
       callbackURL:
-        "https://handsome-plum-crocodile.cyclic.app/auth/google/secrets",
+        "https://dark-erin-peacock-cuff.cyclic.app/auth/google/secrets",
     },
     function (accessToken, refreshToken, profile, cb) {
       const username = profile.displayName + profile.id;
