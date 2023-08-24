@@ -95,7 +95,7 @@ app.get(
 );
 
 app.get(
-  "/auth/google/secrets",
+  "/auth/google/todolist",
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
