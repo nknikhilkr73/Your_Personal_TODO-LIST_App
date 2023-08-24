@@ -107,26 +107,26 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
-app.get("/secrets", function (req, res) {
-  User.find({ secret: { $ne: null } }, function (err, users) {
-    let allSecrets = [];
-    if (err) {
-      console.log(err);
-    } else {
-      if (users) {
-        users.forEach((user) => {
-          user.secret.forEach((secret) => {
-            allSecrets.push(secret);
-          });
-        });
+// app.get("/secrets", function (req, res) {
+//   User.find({ secret: { $ne: null } }, function (err, users) {
+//     let allSecrets = [];
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       if (users) {
+//         users.forEach((user) => {
+//           user.secret.forEach((secret) => {
+//             allSecrets.push(secret);
+//           });
+//         });
 
-        allSecrets.sort((a, b) => a.date - b.date);
+//         allSecrets.sort((a, b) => a.date - b.date);
 
-        res.render("secrets", { userWithSecrets: allSecrets });
-      }
-    }
-  });
-});
+//         res.render("secrets", { userWithSecrets: allSecrets });
+//       }
+//     }
+//   });
+// });
 
 app.get("/todolist", function (req, res) {
   User.findById(req.user.id, function (err, user) {
@@ -148,34 +148,34 @@ app.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-app.post("/submitIt", function (req, res) {
-  if (req.isAuthenticated() === false) {
-    return res.redirect("/login");
-  }
-  const submittedSecret = req.body.message;
-  if (submittedSecret === "") {
-    res.send(
-      "<script>alert('Cannot send a blank text');window.location.href='/secrets'</script>"
-    );
-  } else {
-    User.findById(req.user.id, function (err, user) {
-      if (err) {
-        console.log(err);
-      } else {
-        if (user) {
-          const newSecret = { secretText: submittedSecret, date: new Date() };
-          if (user.secret.length >= 100) {
-            user.secret.splice(0, 30);
-          }
-          user.secret.push(newSecret);
-          user.save(function () {
-            res.redirect("/secrets");
-          });
-        }
-      }
-    });
-  }
-});
+// app.post("/submitIt", function (req, res) {
+//   if (req.isAuthenticated() === false) {
+//     return res.redirect("/login");
+//   }
+//   const submittedSecret = req.body.message;
+//   if (submittedSecret === "") {
+//     res.send(
+//       "<script>alert('Cannot send a blank text');window.location.href='/secrets'</script>"
+//     );
+//   } else {
+//     User.findById(req.user.id, function (err, user) {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         if (user) {
+//           const newSecret = { secretText: submittedSecret, date: new Date() };
+//           if (user.secret.length >= 100) {
+//             user.secret.splice(0, 30);
+//           }
+//           user.secret.push(newSecret);
+//           user.save(function () {
+//             res.redirect("/secrets");
+//           });
+//         }
+//       }
+//     });
+//   }
+// });
 
 app.post("/submitTo", function (req, res) {
   if (!req.isAuthenticated()) {
