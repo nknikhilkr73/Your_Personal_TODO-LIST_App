@@ -247,7 +247,7 @@ app.post("/register", function (req, res) {
         );
       } else {
         passport.authenticate("local")(req, res, function () {
-          res.redirect("/secrets");
+          res.redirect("/todolist");
         });
       }
     }
@@ -284,7 +284,7 @@ app.post("/login", function (req, res) {
             );
           } else {
             passport.authenticate("local")(req, res, function () {
-              res.redirect("/secrets");
+              res.redirect("/todolist");
             });
           }
         });
