@@ -70,8 +70,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      // callbackURL: "http://localhost:4000/auth/google/secrets",
-      callbackURL: "https://chatanonymously.onrender.com/auth/google/secrets",
+      // callbackURL: "http://localhost:4000/auth/google/todolist",
+      callbackURL: "https://chatanonymously.onrender.com/auth/google/todolist",
     },
     function (accessToken, refreshToken, profile, cb) {
       const username = profile.displayName + profile.id;
@@ -99,7 +99,7 @@ app.get(
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("/secrets");
+    res.redirect("/todolist");
   }
 );
 
